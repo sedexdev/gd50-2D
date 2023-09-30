@@ -1,0 +1,57 @@
+main.lua
+    creates:
+        StateMachine instance
+            Returns:
+                StartState
+                    Creates:
+                        LevelMaker
+                            Creates: 
+                                Tile instances
+                                GameObject instances
+                                TileMap instance
+                            Returns: 
+                                GameLevel instance
+                                    DependsOn:
+                                            TileMap
+                PlayState
+                    Creates:
+                        LevelMaker
+                            Creates: 
+                                Tile instances
+                                GameObject instances
+                                TileMap instance
+                            Returns: 
+                                GameLevel instance
+                                    DependsOn:
+                                        TileMap
+                        Player
+                            Creates:
+                                Entity instance
+                                StateMachine instance
+                                    Returns:
+                                        PlayerIdleState
+                                        PlayerWalkingState
+                                        PlayerJumpState
+                                        PlayerFallingState
+                                            -- Each state creates an Animation instance
+                                            DependsOn:
+                                                Player
+                            DependsOn:
+                                LevelMaker
+                                TileMap
+                                GameLevel
+                                    DependsOn:
+                                        TileMap
+                        Snail
+                            Creates:
+                                Entity instance
+                                StateMachine instance
+                                    Returns:
+                                        SnailIdleState
+                                        SnailMovingState
+                                        SnailChasingState
+                                            -- Each state creates an Animation instance
+                                            DependsOn:
+                                                Snail
+                                                Player
+                                                TileMap
