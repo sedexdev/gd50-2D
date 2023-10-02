@@ -30,7 +30,7 @@ LevelMaker = Class{}
     possible ways of randomizing rows and columns of bricks. Calculates the
     brick colors and tiers to choose based on the level passed in.
 ]]
-function LevelMaker.createMap(level)
+function LevelMaker:createMap(level)
     local bricks = {}
 
     -- randomly choose the number of rows

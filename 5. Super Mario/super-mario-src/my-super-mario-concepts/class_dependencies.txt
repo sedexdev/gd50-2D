@@ -55,3 +55,29 @@ main.lua
                                                 Snail
                                                 Player
                                                 TileMap
+
+Current collision config
+
+1. Entity class has an AABB collides function inherited by:
+    - Player
+    - Snail
+2. GameObject class has an AABB collides function
+3. Player class has the following collision functions:
+    - checkLeftCollisions
+    - checkRightCollisions
+    - checkObjectCollisions
+4. Tilemap class has the pointToTile function to get Tiles objects
+5. Tile class has the collidable function to return boolean if this Tile is collidable
+
+-- These checks are made in the Player State classes --
+
+Check for TileMap collisions
+    - get the 2 Tiles objects the Player could be colliding with
+        - uses the function TileMap:pointToTile
+    - check if Tile object is not empty space and Tile:collidable returns true
+    - that's enough to determin collision
+
+Check for Entity (Snail) and GameObject collisions
+    - use AABB like in previous game examples
+
+Snail objects do the same TileMap:pointToTile check and change direction if they collide
