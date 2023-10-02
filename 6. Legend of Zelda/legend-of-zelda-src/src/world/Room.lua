@@ -212,30 +212,32 @@ function Room:render()
 
     -- stencil out the door arches so it looks like the player is going through
     love.graphics.stencil(function()
-        
+
         -- left
         love.graphics.rectangle('fill', -TILE_SIZE - 6, MAP_RENDER_OFFSET_Y + (MAP_HEIGHT / 2) * TILE_SIZE - TILE_SIZE,
             TILE_SIZE * 2 + 6, TILE_SIZE * 2)
-        
+
         -- right
         love.graphics.rectangle('fill', MAP_RENDER_OFFSET_X + (MAP_WIDTH * TILE_SIZE),
             MAP_RENDER_OFFSET_Y + (MAP_HEIGHT / 2) * TILE_SIZE - TILE_SIZE, TILE_SIZE * 2 + 6, TILE_SIZE * 2)
-        
+
         -- top
         love.graphics.rectangle('fill', MAP_RENDER_OFFSET_X + (MAP_WIDTH / 2) * TILE_SIZE - TILE_SIZE,
             -TILE_SIZE - 6, TILE_SIZE * 2, TILE_SIZE * 2 + 12)
-        
+
         --bottom
         love.graphics.rectangle('fill', MAP_RENDER_OFFSET_X + (MAP_WIDTH / 2) * TILE_SIZE - TILE_SIZE,
             VIRTUAL_HEIGHT - TILE_SIZE - 6, TILE_SIZE * 2, TILE_SIZE * 2 + 12)
     end, 'replace', 1)
 
+    -- acts on the stencil callback when we replaced stencil values for each rectangle with '1'
     love.graphics.setStencilTest('less', 1)
-    
+
     if self.player then
         self.player:render()
     end
 
+    -- called with no args disables the stencil test
     love.graphics.setStencilTest()
 
     --
